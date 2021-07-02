@@ -1,24 +1,38 @@
-import logo from './logo.svg';
+import React from 'react';
+import PostPage from './pages/PostPage';
+import NotePage from './pages/NotePage';
+
 import './App.css';
 
 function App() {
   return (
+    <React.Fragment>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+          <h1>
+            React Simple App
+          </h1>
       </header>
+      <table style={{ width: "100%" }} >
+        <thead>
+          <tr>
+            <td style={{ width: "50%" }}>
+              <h2>Posts</h2>
+            </td>
+            <td style={{ width: "50%" }}>
+              <h2>Notes</h2>
+            </td>
+          </tr>
+        </thead>
+        <tbody style={{ height: "800px" }} >
+          <tr>
+            <td style={{ padding: "16px", verticalAlign: "top" }} ><PostPage></PostPage></td>
+            <td style={{ padding: "16px", verticalAlign: "top" }} ><NotePage></NotePage></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    </React.Fragment>
   );
 }
 
