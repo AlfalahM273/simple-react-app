@@ -1,6 +1,6 @@
-
 import React from 'react';
 import Post from '../templates/Post';
+import { Button, Alert } from 'reactstrap';
 
 class PostPage extends React.Component {
     constructor(props){
@@ -38,16 +38,19 @@ class PostPage extends React.Component {
     render(){
         return (
             <React.Fragment>
-                <span style={{ color: "red" }}>
-                    {this.state.alert}
-                </span>
-                <br/>
-                <textarea style={{ width: "100%" }}  type="text" value={this.state.content} onChange={(e) => this.setState({ content: e.target.value })}  ></textarea> <br/> <br/>
-                <button style={{ width: "100%" }} onClick={() => {
+                { this.state.alert ?
+                    <Alert color="danger"  >
+                        {this.state.alert}
+                    </Alert>
+                    :
+                    ""
+                }
+                <textarea style={{ width: "100%" }}  type="text" value={this.state.content} onChange={(e) => this.setState({ content: e.target.value, alert : "" })}  ></textarea>
+                <Button size="sm" color="success" onClick={() => {
                     this.addPost(this.state.content);
                 }}  >
                     Add
-                </button>
+                </Button>
                 <br/> <br/>
                 {this.state.posts.map((e, key)=>{
                     return(

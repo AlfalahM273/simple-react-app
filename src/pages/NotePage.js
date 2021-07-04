@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Note from '../templates/Note';
+import { Button, Alert } from 'reactstrap';
 
 class NotePage extends React.Component {
     constructor(props){
@@ -39,17 +40,20 @@ class NotePage extends React.Component {
     render(){
         return (
             <React.Fragment>
-                <span style={{ color: "red" }}>
+            { this.state.alert ?
+                <Alert color="danger"  >
                     {this.state.alert}
-                </span>
-                <br/>
-                <textarea style={{ width: "100%" }}  type="text" value={this.state.content} onChange={(e) => this.setState({ content: e.target.value })}  ></textarea> <br/> <br/>
-                <button style={{ width: "100%" }} onClick={() => {
+                </Alert>
+                :
+                ""
+            }
+                <textarea style={{ width: "100%" }}  type="text" value={this.state.content} onChange={(e) => this.setState({ content: e.target.value, alert : ""  })}  ></textarea> <br/>
+                <Button color="success" onClick={() => {
                     this.addNote(this.state.content);
                 }}  >
                     Add
-                </button>
-                <br/> <br/>
+                </Button>
+                <br/>
                 {this.state.notes.map((e, key)=>{
                     return(
                         <Note key={key} post={e} onDelete={(id)=>{

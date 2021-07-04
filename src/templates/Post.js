@@ -1,13 +1,14 @@
+import { Button } from 'reactstrap';
 
 function Post(props){
     return (
         <div style={{ textAlign: "left", padding: "8px" }} >
             {props.post.content}{' '}
-            <button onClick={() => {
+            <Button size="sm" color="danger" onClick={() => {
                 props.onDelete(props.post.id);
             }} >
                 Remove
-            </button>
+            </Button>
         </div>
     );
 }
