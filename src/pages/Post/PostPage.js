@@ -1,5 +1,5 @@
 import React from 'react';
-import Post from '../templates/Post';
+import Post from '../../templates/Post';
 import { Button, Alert } from 'reactstrap';
 
 class PostPage extends React.Component {
@@ -38,6 +38,7 @@ class PostPage extends React.Component {
     render(){
         return (
             <React.Fragment>
+                <h2>Posts</h2>
                 { this.state.alert ?
                     <Alert color="danger"  >
                         {this.state.alert}

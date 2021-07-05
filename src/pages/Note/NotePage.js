@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Note from '../templates/Note';
+import Note from '../../templates/Note';
 import { Button, Alert } from 'reactstrap';
 
 class NotePage extends React.Component {
@@ -40,6 +40,7 @@ class NotePage extends React.Component {
     render(){
         return (
             <React.Fragment>
+            <h2>Notes</h2>
             { this.state.alert ?
                 <Alert color="danger"  >
                     {this.state.alert}
