@@ -78,7 +78,7 @@ class ProductPage extends React.Component {
                                         <Link to={`/product/${product._id}`} >
                                             <Button 
                                                 size="sm" color="primary"
-                                            >Detail</Button>
+                                            >Edit</Button>
                                         </Link>
                                         <Button 
                                             size="sm" color="danger"

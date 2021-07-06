@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Table, Container, Button, Row, Col, Jumbotron, Card, CardBody, Form, FormGroup, Label, Input, CardHeader, CardTitle } from 'reactstrap';
+import { Container, Button, Row, Col, Jumbotron, Card, CardBody, Form, FormGroup, Label, Input, CardHeader, CardTitle } from 'reactstrap';
 
 import instance from '../../api/AxiosInstance';
 export const axios = instance.apiInstance();

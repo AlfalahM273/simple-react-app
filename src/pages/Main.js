@@ -15,18 +15,41 @@ class MainPage extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            content : "",
-            alert : "",
-            posts : [],
-        }
+          isAuthenticated: false
+        };
     }
     
     componentDidMount() {
+        this.setState({ isAuthenticated: this.isAuthenticated() })
+    }
+
+    getTimeIn = () => {
+        const timeNow = new Date().getTime();
+        return parseFloat((timeNow + 1) / 1000).toFixed(0);
+    };
+
+    isAuthenticated = () => {
+        const expiresIn = localStorage.getItem("expiresIn");
+        if (expiresIn) {
+            if (expiresIn < this.getTimeIn()) {
+            return false;
+            } else {
+            return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    logOut = () => {
+        localStorage.clear();
+        window.location.href = "/";
     }
 
     render(){
         return (
             <BrowserRouter>
+            {this.state.isAuthenticated &&
             <Container>
                 <Row>
                     <Col>
@@ -35,24 +58,32 @@ class MainPage extends React.Component {
                     <Col>
                         <Link to="/product" >Product</Link>
                     </Col>
+                    <Col>
+                        <a href="#" 
+                            onClick={this.logOut}
+                         >
+                            Logout
+                        </a>
+                    </Col>
                 </Row>
             </Container>
+            }
             <Switch>
-                <AuthRoute exact path="/">
-                    <HomePage />
-                </AuthRoute>
+                <Route exact path="/">
+                    <HomePage isAuthenticated={this.state.isAuthenticated} />
+                </Route>
                 <Route exact path="/login">
                     <LoginPage />
                 </Route>
-                <Route exact path="/product">
+                <AuthRoute exact path="/product">
                     <ProductPage />
-                </Route>
-                <Route path="/product/create">
+                </AuthRoute>
+                <AuthRoute path="/product/create">
                     <CreateProductPage />
-                </Route>
-                <Route path="/product/:id">
+                </AuthRoute>
+                <AuthRoute path="/product/:id">
                     <DetailProductPage />
-                </Route>
+                </AuthRoute>
             </Switch>
             </BrowserRouter>
         )

@@ -5,15 +5,24 @@ import {
 } from 'reactstrap';
 
 import instance from '../../api/AxiosInstance';
-import { useRouteMatch } from 'react-router-dom';
+import { useRouteMatch, Link } from 'react-router-dom';
 
 export const axios = instance.apiInstance();
 
-function HomePage () {
-    let match = useRouteMatch();
-    
+function HomePage (props) {
     return (
         <React.Fragment>
+            {
+                !props.isAuthenticated ?
+                <Container>
+                    <Row>
+                        <Col>
+                            <Link to="/login" >Login</Link>
+                        </Col>
+                    </Row>
+                </Container>
+                : ""
+            }
             <Container>
                 <h3>
                     Home

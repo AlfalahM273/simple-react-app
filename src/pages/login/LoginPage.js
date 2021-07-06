@@ -47,22 +47,17 @@ class LoginPage extends React.Component {
                 localStorage.setItem("expiresIn", tokenData.exp * 1000);
                 localStorage.setItem("token", response.token);
                 
-                this.setState({ loggedIn: true });
+                
+                window.location.href = "/";
             })
             .catch(function (error) {
-                console.log('error', error.response);
-                if (error.response.status === 400) {
-                    alert(error.response.data.Message);
+                if (error.response.status >= 400 && error.response.status < 500) {
+                    alert(error.response.data.err[0]);
                 }
             });
     }
 
     render(){
-        if (this.state.loggedIn) {
-            // redirect to home if signed up
-            const { location } = this.props
-            return <Redirect to={location?.from || '/'} />
-        }
         return (
             <React.Fragment>
                 <Container>
@@ -89,7 +84,7 @@ class LoginPage extends React.Component {
                                         <FormGroup >
                                             <Label for="password">Password</Label>
                                             <Input 
-                                                type="text" name="password" id="password"
+                                                type="password" name="password" id="password"
                                                 value={this.state.password}
                                                 onChange={this.handleInputChange}
                                             />
